@@ -17,15 +17,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Map data;
+  Map mydata;
   List userData;
 
   Future getData() async {
     http.Response response =
         await http.get("https://reqres.in/api/users?page=2");
-    data = json.decode(response.body);
+// get the data from json file
+
+    mydata = json.decode(response.body);
     setState(() {
-      userData = data["data"];
+      userData = mydata["data"];
     });
   }
 
@@ -68,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(5.0),
                         child: Text(
                           "${userData[index]["email"]}",
                           style: TextStyle(fontSize: 15.0, color: Colors.teal),
